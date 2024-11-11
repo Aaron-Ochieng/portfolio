@@ -8,7 +8,7 @@ export default function Section1() {
         <header className="lg:sticky lg:top-0 lg:flex lg:max-h-screen lg:w-1/2 lg:flex-col lg:justify-between lg:py-24">
             <div>
                 <h1 className="text-4xl font-bold tracking-tight text-gray-500 dark:text-slate-200 sm:text-5xl">
-                    <Link href="/"> <p className="font-[family-name:var(--font-typing-mono)]"> Aaron Ochieng</p> </Link>
+                    <Link href="/"> <p className="font-[family-name:var(--font-typing-mono)] hover:text-blue-400"> Aaron Ochieng</p> </Link>
                 </h1>
                 <h2 className="mt-3 text-lg font-medium tracking-tight text-gray-500 dark:text-slate-200 sm:text-xl">Back End & Front End Developer</h2>
                 <p className="mt-4 max-w-xs leading-normal">I build accessible, pixel-perfect digital experiences for the web.</p>
@@ -42,7 +42,7 @@ export default function Section1() {
                     </Link>
                 </li>
                 <li className="mr-5 shrink-0 text-xs">
-                    <Link className="block hover:text-gray-400 hover:scale-150 dark:hover:text-slate-200" href="https://github.com/Aaron-Ochieng" target="_blank" rel="noreferrer noopener" title="Dev.To">
+                    <Link className="block hover:text-gray-400 hover:scale-150 dark:hover:text-slate-200" href="https://dev.to" target="_blank" rel="noreferrer noopener" title="Dev.To">
                         <BiLogoDevTo className="h-6 w-6" />
                     </Link>
                 </li>
