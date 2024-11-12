@@ -15,7 +15,7 @@ export const work = {
     work_2: {
         desc: "",
         pos: "Apprentice Developer",
-        technology: ["golang", "javascript", "shell"],
+        technology: ["golang", "javascript", "shell", "UX"],
         date: "April, 2024 - Present",
         company: "Zone 01 Kisumu"
     },
