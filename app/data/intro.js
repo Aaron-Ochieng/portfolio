@@ -48,7 +48,7 @@ export const projects = {
     },
     project2: {
         name: "Geolocalization",
-        description: "",
+        description: "A web project testing on api usage & displaying of maps on a webpage. The project generates coordinates (longitudes & latitude) based on a given location name & placing the markers on a map.",
         languages: ["golang", "html", "js"],
         url: "https://github.com/Aaron-Ochieng/go-geolocalization.git"
     },
