@@ -3,7 +3,6 @@ import Card from "./card";
 import ProjectCard from "./project_card";
 
 export default function Section2() {
-    var txt = "{txt}"
     return (
         <section className="pt-24 lg:w-1/2 lg:py-24">
             <div className="mb-16 scroll-mt-16 md:mb-24 lg:mb-36 lg:scroll-mt-24" id="#about">
@@ -22,17 +21,17 @@ export default function Section2() {
 
             {/* Work Experience */}
             {Object.entries(work).map(([key, { desc, pos, technology, date, company }]) => (
-                <div key={key}>
+                <ol key={key}>
                     <Card key={key} date={date} position={pos} company={company} description={desc} technology={technology} />
-                </div>
+                </ol>
             ))}
 
 
             {/* Projects */}
             {Object.entries(projects).map(([key, { name, description, languages, url }]) => (
-                <div key={key}>
+                <ol key={key}>
                     <ProjectCard name={name} description={description} languages={languages} url={url} />
-                </div>
+                </ol>
             ))}
 
         </section>
