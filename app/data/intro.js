@@ -71,7 +71,7 @@ export const projects = {
         url: "https://github.com/Aaron-Ochieng/guess-it-1.git"
     },
     project7: {
-        name: "NetCat",
+        name: "Net Cat",
         description: "A recreation of netcat server functionality.Its a terminal app written in golang & It behaves like a telegram app. The app allows a max number of conections of 10 in the server, message formatting, not sending of empty messages ...etc",
         languages: ["golang"],
         url: "https://github.com/Aaron-Ochieng/net-cat.git"
