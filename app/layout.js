@@ -1,5 +1,6 @@
 import localFont from "next/font/local";
 import "./globals.css";
+import { Provider } from "./provider";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -24,13 +25,15 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       <body
         className={`${geistSans.variable} ${geistMono.variable} ${typingFont.variable} antialiased bg-blue-50 dark:bg-slate-700 container mx-auto min-h-screen-max-screen-xl px-6 py-10 font-sans md:px-12 md:py-20`}
       >
-        <div className="mt-16">
-          {children}
-        </div>
+        <Provider>
+          <div className="mt-10">
+            {children}
+          </div>
+        </Provider>
       </body>
     </html>
   );
