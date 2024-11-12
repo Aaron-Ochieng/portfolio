@@ -1,4 +1,5 @@
-import { intro } from "../data/intro";
+import { intro, work } from "../data/intro";
+import Card from "./card";
 
 export default function Section2() {
     var txt = "{txt}"
@@ -17,6 +18,13 @@ export default function Section2() {
                     </p>
                 </div>
             </div>
+
+            {/* Work Experience */}
+            {Object.entries(work).map(([key, { desc, pos, technology, date, company }]) => (
+                <div key={key}>
+                    <Card key={key} date={date} position={pos} company={company} description={desc} technology={technology} />
+                </div>
+            ))}
         </section>
     )
 }
