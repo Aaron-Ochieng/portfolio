@@ -27,7 +27,7 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en" suppressHydrationWarning>
       <body
-        className={`${geistSans.variable} ${geistMono.variable} ${typingFont.variable} antialiased bg-blue-50 dark:bg-slate-700 container mx-auto min-h-screen-max-screen-xl px-6 py-10 font-sans md:px-12 md:py-20`}
+        className={`${geistSans.variable} ${geistMono.variable} ${typingFont.variable} antialiased bg-blue-50 dark:bg-slate-900 container mx-auto min-h-screen-max-screen-xl px-6 py-10 font-sans md:px-12 md:py-20`}
       >
         <Provider>
           <div className="mt-10">
