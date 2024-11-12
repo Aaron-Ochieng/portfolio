@@ -21,11 +21,11 @@ export default function Card({ date, position, company, technology, description 
                                 <div className="text-slate-500" aria-hidden="true">{position}</div>
                             </div>
                         </h3>
-                        <p className="mt-2 text-sm leading-normal text-gray-600 dark:text-gray-400">{description}</p>
-                        <ul className="mt-2 flex flex-wrap" aria-label="Technologies">
+                        <p className="mt-2 text-sm leading-normal text-gray-600 dark:text-gray-400 font-[family-name:var(--font-geist-mono)]">{description}</p>
+                        <ul className="mt-2 flex flex-wrap">
                             {technology.map((tech, index) => (
                                 <li className="mr-1.5 mt-2" key={index}>
-                                    <div className="flex items-center rounded-full  bg-[#d5deef] dark:bg-teal-400/10 px-3 py-1 text-xs font-medium leading-5 text-gray-500 dark:text-teal-300 ">{tech}</div>
+                                    <div className="flex items-center rounded-full  bg-[#d5deef] dark:bg-teal-400/10 px-3 py-1 text-xs font-medium leading-5 text-gray-500 dark:text-teal-300 font-[family-name:var(--font-geist-mono)]">{tech}</div>
                                 </li>
                             ))}
                         </ul>
