@@ -1,4 +1,4 @@
-import { intro, work } from "../data/intro";
+import { intro, projects, work } from "../data/intro";
 import Card from "./card";
 import ProjectCard from "./project_card";
 
@@ -29,14 +29,12 @@ export default function Section2() {
 
 
             {/* Projects */}
-            <ProjectCard/>
-            <ProjectCard/>
-            <ProjectCard/>
-            <ProjectCard/>
-            <ProjectCard/>
-            <ProjectCard/>
-            <ProjectCard/>
-            <ProjectCard/>
+            {Object.entries(projects).map(([key, { name, description, languages, url }]) => (
+                <div key={key}>
+                    <ProjectCard name={name} description={description} languages={languages} url={url} />
+                </div>
+            ))}
+
         </section>
     )
 }
