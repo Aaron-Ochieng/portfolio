@@ -1,5 +1,6 @@
 import { intro, work } from "../data/intro";
 import Card from "./card";
+import ProjectCard from "./project_card";
 
 export default function Section2() {
     var txt = "{txt}"
@@ -25,6 +26,17 @@ export default function Section2() {
                     <Card key={key} date={date} position={pos} company={company} description={desc} technology={technology} />
                 </div>
             ))}
+
+
+            {/* Projects */}
+            <ProjectCard/>
+            <ProjectCard/>
+            <ProjectCard/>
+            <ProjectCard/>
+            <ProjectCard/>
+            <ProjectCard/>
+            <ProjectCard/>
+            <ProjectCard/>
         </section>
     )
 }
