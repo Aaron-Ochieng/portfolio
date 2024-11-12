@@ -4,10 +4,12 @@ import ThemeSwitcher from "./themeswitcher";
 
 export default function Home() {
   return (
-    <div className="lg:flex lg:justify-between lg:gap-4">
-      <ThemeSwitcher/>
-      <Section1 />
-      <Section2/>
-    </div>
+    <>
+      <ThemeSwitcher />
+      <div className="lg:flex lg:justify-between lg:gap-4">
+        <Section1 />
+        <Section2 />
+      </div>
+    </>
   )
 }

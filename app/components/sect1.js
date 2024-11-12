@@ -37,22 +37,22 @@ export default function Section1() {
             </div>
             <ul className="ml-1 mt-8 flex items-center" aria-label="Social media">
                 <li className="mr-5 shrink-0 text-xs">
-                    <Link className="block hover:text-gray-400 hover:scale-150 dark:hover:text-slate-200" href="https://github.com/Aaron-Ochieng" target="_blank" rel="noreferrer noopener" title="GitHub">
+                    <Link className="block hover:text-gray-400 hover:scale-150 text-gray-400 dark:hover:text-slate-200" href="https://github.com/Aaron-Ochieng" target="_blank" rel="noreferrer noopener" title="GitHub">
                         <FaGithub className="h-6 w-6" />
                     </Link>
                 </li>
                 <li className="mr-5 shrink-0 text-xs">
-                    <Link className="block hover:text-gray-400 hover:scale-150 dark:hover:text-slate-200" href="https://dev.to" target="_blank" rel="noreferrer noopener" title="Dev.To">
+                    <Link className="block hover:text-gray-400 hover:scale-150 text-gray-400 dark:hover:text-slate-200" href="https://dev.to" target="_blank" rel="noreferrer noopener" title="Dev.To">
                         <BiLogoDevTo className="h-6 w-6" />
                     </Link>
                 </li>
                 <li className="mr-5 shrink-0 text-xs">
-                    <Link className="block hover:text-gray-400 hover:scale-150 dark:hover:text-slate-200" href="https://ke.linkedin.com/" target="_blank" rel="noreferrer noopener" title="LinkedIn">
+                    <Link className="block hover:text-gray-400 hover:scale-150 text-gray-400 dark:hover:text-slate-200" href="https://ke.linkedin.com/" target="_blank" rel="noreferrer noopener" title="LinkedIn">
                         <FaLinkedin className="h-6 w-6" />
                     </Link>
                 </li>
                 <li className="mr-5 shrink-0 text-xs">
-                    <Link className="block hover:text-gray-400 hover:scale-150 dark:hover:text-slate-200" href="https://x.com/Aaron_Ochieng_" target="_blank" rel="noreferrer noopener" title="X">
+                    <Link className="block hover:text-gray-400 hover:scale-150 text-gray-400 dark:hover:text-slate-200" href="https://x.com/Aaron_Ochieng_" target="_blank" rel="noreferrer noopener" title="X">
                         <FaXTwitter className="h-6 w-6" />
                     </Link>
                 </li>

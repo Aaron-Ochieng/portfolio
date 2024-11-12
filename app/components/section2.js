@@ -13,7 +13,7 @@ export default function Section2() {
                 </div>
 
                 <div>
-                    <p className="mb-4 font-[family-name:var(--font-geist-mono)]">
+                    <p className="mb-4 font-[family-name:var(--font-geist-mono)] text-gray-600 dark:text-gray-300">
                         {intro.intro}
                     </p>
                 </div>

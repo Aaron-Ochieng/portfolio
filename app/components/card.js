@@ -9,7 +9,7 @@ export default function Card({ date, position, company, technology, description 
                     <div className="z-10 sm:col-span-6">
                         <h3 className="font-medium leading-snug text-slate-200">
                             <div>
-                                <a className="inline-flex items-baseline font-medium leading-tight text-slate-600 dark:text-slate-200 dark:hover:text-teal-300 focus-visible:text-teal-300  group/link text-base" target="_blank" rel="noreferrer noopener" aria-label="Lead Engineer at Upstatement (opens in a new tab)">
+                                <a className="inline-flex items-baseline font-medium leading-tight text-slate-600 dark:text-slate-200 group/link text-base" target="_blank" rel="noreferrer noopener">
                                     <span className="absolute -inset-x-4 -inset-y-2.5 hidden rounded md:-inset-x-6 md:-inset-y-4 lg:block">
                                     </span>
                                     <span className="text-xl">
@@ -21,11 +21,10 @@ export default function Card({ date, position, company, technology, description 
                                 <div className="text-slate-500" aria-hidden="true">{position}</div>
                             </div>
                         </h3>
-                        <p className="mt-2 text-sm leading-normal">{description}</p>
+                        <p className="mt-2 text-sm leading-normal text-gray-600 dark:text-gray-400">{description}</p>
                         <ul className="mt-2 flex flex-wrap" aria-label="Technologies">
                             {technology.map((tech, index) => (
                                 <li className="mr-1.5 mt-2" key={index}>
-                                    {console.log(tech)}
                                     <div className="flex items-center rounded-full  bg-[#d5deef] dark:bg-teal-400/10 px-3 py-1 text-xs font-medium leading-5 text-gray-500 dark:text-teal-300 ">{tech}</div>
                                 </li>
                             ))}

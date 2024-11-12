@@ -13,7 +13,7 @@ export default function ThemeSwitcher() {
     useEffect(() => { setMounted(true) }, [])
 
     return (
-        <div>
+        <div className="sm:mb-2">
             {!mounted ? <></> : <div>{resolvedTheme === "light" ? <PiMoonThin onClick={() => setTheme("dark")} className="scale-150" /> : <PiSunDimLight onClick={() => setTheme("light")} className="scale-150 text-white" />}</div>}
         </div>
     )
