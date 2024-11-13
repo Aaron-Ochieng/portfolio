@@ -29,13 +29,13 @@ export default function Section2() {
                 </div>
 
                 <div>
-                    <p className="mb-4 font-[family-name:var(--font-geist-mono)] text-gray-600 dark:text-gray-300">
-                        {Object.entries(work).map(([key, { desc, pos, technology, date, company }]) => (
+                    <div className="mb-4 font-[family-name:var(--font-geist-mono)] text-gray-600 dark:text-gray-300">
+                        {Object.entries(work).map(([key, { desc, pos, technology, date, company, url }]) => (
                             <ol key={key}>
-                                <Card key={key} date={date} position={pos} company={company} description={desc} technology={technology} />
+                                <Card key={key} date={date} position={pos} company={company} description={desc} technology={technology} url={url} />
                             </ol>
                         ))}
-                    </p>
+                    </div>
                 </div>
             </div>
 
@@ -49,13 +49,13 @@ export default function Section2() {
                 </div>
 
                 <div>
-                    <p className="mb-4 font-[family-name:var(--font-geist-mono)] text-gray-600 dark:text-gray-300">
+                    <div className="mb-4 font-[family-name:var(--font-geist-mono)] text-gray-600 dark:text-gray-300">
                         {Object.entries(projects).map(([key, { name, description, languages, url }]) => (
                             <ol key={key}>
                                 <ProjectCard name={name} description={description} languages={languages} url={url} />
                             </ol>
                         ))}
-                    </p>
+                    </div>
                 </div>
             </div>
 
