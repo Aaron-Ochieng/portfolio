@@ -11,7 +11,7 @@ export default function Section1() {
                     <Link href="/"> <p className="font-[family-name:var(--font-typing-mono)] hover:text-blue-400"> Aaron Ochieng</p> </Link>
                 </h1>
                 <h2 className="mt-3 text-lg font-medium tracking-tight text-gray-500 dark:text-slate-200 sm:text-xl">Back End & Front End Developer</h2>
-                <p className="mt-4 max-w-xs leading-normal text-gray-500 dark:text-gray-300 font-[family-name:var(--font-geist-mono)]">I’m a web developer specializing in Go and JavaScript. I focus on building efficient, scalable backend systems with Go and creating responsive, user-friendly frontends with JavaScript.</p>
+                <p className="mt-4 max-w-xs leading-normal text-gray-500 dark:text-gray-300 font-[family-name:var(--font-geist-mono)]">I focus on building efficient, scalable backend systems with Go and creating responsive, user-friendly frontends with JavaScript.</p>
                 <nav className="nav hidden lg:block">
                     <ul className="mt-16 w-max">
                         <li>
