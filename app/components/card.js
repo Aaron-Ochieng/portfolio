@@ -34,7 +34,7 @@ export default function Card({ date, position, company, technology, description,
                                 <div className="text-slate-500" aria-hidden="true">{position}</div>
                             </div>
                         </h3>
-                        <p className="mt-2 text-sm leading-normal text-gray-600 dark:text-gray-400 font-[family-name:var(--font-geist-mono)]">{description}</p>
+                        <p className="mt-2 text-sm leading-normal text-gray-600 dark:text-gray-400 font-[family-name:var(--font-geist-mono)] font-semibold">{description}</p>
                         <ul className="mt-2 flex flex-wrap">
                             {technology.map((tech, index) => (
                                 <li className="mr-1.5 mt-2" key={index}>
