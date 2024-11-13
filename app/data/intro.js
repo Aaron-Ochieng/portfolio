@@ -13,9 +13,10 @@ export const education = {
 
 export const work = {
     work_1: {
-        desc: "",
+        desc: `I've currently been training in the company's projects with my peers to enhance my programming skills in C, Golang, JavaScript, UX - UI Design, Rust ...etc.
+        It's a peer to peer learning model to enhance my skills for the market jobs`,
         pos: "Apprentice Developer",
-        technology: ["golang", "javascript", "shell", "UX"],
+        technology: ["Golang", "Javascript", "Shell", "UX"],
         date: "Apr, 2024 - Present",
         company: "Zone 01 Kisumu",
         url: "https://www.zone01kisumu.ke"
@@ -23,7 +24,7 @@ export const work = {
     work_2: {
         desc: "One month of intensive coding to access my skills for the selection process into the Zone01 Kisumu 2 year program. ",
         pos: "Piscine Candidate",
-        technology: ["golang", "shell"],
+        technology: ["Golang", "Shell"],
         date: "Oct, 2023 - Nov, 2023 ",
         company: "Zone 01 Kisumu",
         url: "https://www.zone01kisumu.ke"
@@ -35,7 +36,7 @@ export const work = {
         I also did capturing of data (sun system) to the server and report preparation in the Finance Department - ICT Section
         `,
         pos: "I.T Attachee",
-        technology: ["Computer Networking", "Software Update", "Data capture"],
+        technology: ["Computer Networking", "Software Update", "Data Capture"],
         date: "Oct, 2021 - Dec, 2021",
         company: "Chemelil Sugar Company",
         url: ""
