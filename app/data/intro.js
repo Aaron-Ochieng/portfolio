@@ -16,15 +16,17 @@ export const work = {
         desc: "",
         pos: "Apprentice Developer",
         technology: ["golang", "javascript", "shell", "UX"],
-        date: "April, 2024 - Present",
-        company: "Zone 01 Kisumu"
+        date: "Apr, 2024 - Present",
+        company: "Zone 01 Kisumu",
+        url: "www.zone01kisumu.ke"
     },
     work_2: {
         desc: "One month of intensive coding to access my skills for the selection process into the Zone01 Kisumu 2 year program. ",
         pos: "Piscine Candidate",
         technology: ["golang", "shell"],
-        date: "October, 2023 - November, 2023 ",
-        company: "Zone 01 Kisumu"
+        date: "Oct, 2023 - Nov, 2023 ",
+        company: "Zone 01 Kisumu",
+        url: "www.zone01kisumu.ke"
     },
     work_3: {
         desc: `
@@ -34,8 +36,9 @@ export const work = {
         `,
         pos: "I.T Attachee",
         technology: ["Computer Networking", "Software Update", "Data capture"],
-        date: "October, 2021 - December, 2021",
-        company: "Chemelil Sugar Company"
+        date: "Oct, 2021 - Dec, 2021",
+        company: "Chemelil Sugar Company",
+        url: ""
     }
 }
 
@@ -75,5 +78,11 @@ export const projects = {
         description: "A recreation of netcat server functionality.Its a terminal app written in golang & It behaves like a telegram app. The app allows a max number of conections of 10 in the server, message formatting, not sending of empty messages ...etc",
         languages: ["golang"],
         url: "https://github.com/Aaron-Ochieng/net-cat.git"
-    }
+    },
+    project8: {
+        name: "ATM Management System",
+        description: "A recreation of netcat server functionality.Its a terminal app written in golang & It behaves like a telegram app. The app allows a max number of conections of 10 in the server, message formatting, not sending of empty messages ...etc",
+        languages: ["C", "MakeFile", "SQLite3", "Shell"],
+        url: "https://github.com/Aaron-Ochieng/net-cat.git"
+    },
 }
