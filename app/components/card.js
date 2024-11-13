@@ -12,7 +12,7 @@ export default function Card({ date, position, company, technology, description,
                         <h3 className="font-medium leading-snug text-slate-200">
                             <div>
                                 {url !== "" ? <div>
-                                    <Link href={url} className="inline-flex items-baseline font-medium leading-tight text-slate-600 dark:text-slate-200 group/link text-base" target="_blank" rel="noreferrer noopener">
+                                    <Link href={url} className="inline-flex items-baseline font-medium leading-tight text-slate-600 dark:text-green-400/80  text-base" target="_blank" rel="noreferrer noopener">
                                         <span className="absolute -inset-x-4 -inset-y-2.5 hidden rounded md:-inset-x-6 md:-inset-y-4 lg:block">
                                         </span>
                                         <span className="text-xl">
@@ -20,7 +20,7 @@ export default function Card({ date, position, company, technology, description,
                                         </span>
                                     </Link>
                                 </div> : <div>
-                                    <div className="inline-flex items-baseline font-medium leading-tight text-slate-600 dark:text-slate-200 group/link text-base">
+                                    <div className="inline-flex items-baseline font-medium leading-tight text-slate-600 dark:text-green-400/80  text-base">
                                         <span className="absolute -inset-x-4 -inset-y-2.5 hidden rounded md:-inset-x-6 md:-inset-y-4 lg:block">
                                         </span>
                                         <span className="text-xl">
@@ -31,14 +31,14 @@ export default function Card({ date, position, company, technology, description,
                                 }
                             </div>
                             <div>
-                                <div className="text-slate-500" aria-hidden="true">{position}</div>
+                                <div className="text-slate-500  dark:text-gray-400 hover:dark:text-gray-200" aria-hidden="true">{position}</div>
                             </div>
                         </h3>
                         <p className="mt-2 text-sm leading-normal text-gray-600 dark:text-gray-400 font-[family-name:var(--font-geist-mono)] font-semibold">{description}</p>
                         <ul className="mt-2 flex flex-wrap">
                             {technology.map((tech, index) => (
                                 <li className="mr-1.5 mt-2" key={index}>
-                                    <div className="flex items-center rounded-full  bg-[#d5deef] hover:bg-gray-500/10 dark:bg-teal-400/10 px-3 py-1 text-xs font-medium leading-5 text-gray-500 dark:text-teal-300 font-[family-name:var(--font-geist-mono)]">{tech}</div>
+                                    <div className="flex items-center rounded-full  bg-[#d5deef] hover:bg-gray-500/10 dark:bg-green-400/10 px-3 py-1 text-xs font-medium leading-5 text-gray-500 dark:text-green-300 font-[family-name:var(--font-geist-mono)]">{tech}</div>
                                 </li>
                             ))}
                         </ul>

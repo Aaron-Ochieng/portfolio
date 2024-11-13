@@ -18,7 +18,7 @@ export default async function ProjectCard({ description, name, languages, url })
                         <ul className="mt-2 flex flex-wrap">
                             {languages.map((ln, index) => (
                                 <li className="mr-1.5 mt-2" key={index}>
-                                    <div className="flex items-center rounded-full  bg-[#d5deef] dark:bg-green-400/10 dark:hover:bg-green-400/20 px-3 py-1 text-xs font-medium leading-5 text-gray-500 dark:text-green-300  font-[family-name:var(--font-geist-mono)]">{ln}</div>
+                                    <div className="flex items-center rounded-full  bg-[#d5deef] dark:bg-green-400/10 dark:hover:bg-green-400/20 px-3 py-1 text-sm font-medium leading-5 text-gray-500 dark:text-green-300  font-[family-name:var(--font-geist-mono)]">{ln}</div>
                                 </li>
                             ))}
 
