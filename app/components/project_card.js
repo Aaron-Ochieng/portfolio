@@ -14,7 +14,7 @@ export default async function ProjectCard({ description, name, languages, url })
                                 </span>
                             </Link>
                         </h3>
-                        <p className="mt-2 text-sm leading-normal text-slate-600 dark:text-gray-300 font-[family-name:var(--font-geist-mono)]">{description}</p>
+                        <p className="mt-2 text-sm leading-normal text-slate-600 dark:text-gray-300 font-[family-name:var(--font-geist-mono)] font-semibold">{description}</p>
                         <ul className="mt-2 flex flex-wrap">
                             {languages.map((ln, index) => (
                                 <li className="mr-1.5 mt-2" key={index}>
