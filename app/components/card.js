@@ -20,7 +20,7 @@ export default function Card({ date, position, company, technology, description,
                                         </span>
                                     </Link>
                                 </div> : <div>
-                                    <div className="inline-flex items-baseline font-medium leading-tight text-slate-600 dark:text-slate-200 group/link text-base" target="_blank" rel="noreferrer noopener">
+                                    <div className="inline-flex items-baseline font-medium leading-tight text-slate-600 dark:text-slate-200 group/link text-base">
                                         <span className="absolute -inset-x-4 -inset-y-2.5 hidden rounded md:-inset-x-6 md:-inset-y-4 lg:block">
                                         </span>
                                         <span className="text-xl">
@@ -38,7 +38,7 @@ export default function Card({ date, position, company, technology, description,
                         <ul className="mt-2 flex flex-wrap">
                             {technology.map((tech, index) => (
                                 <li className="mr-1.5 mt-2" key={index}>
-                                    <div className="flex items-center rounded-full  bg-[#d5deef] dark:bg-teal-400/10 px-3 py-1 text-xs font-medium leading-5 text-gray-500 dark:text-teal-300 font-[family-name:var(--font-geist-mono)]">{tech}</div>
+                                    <div className="flex items-center rounded-full  bg-[#d5deef] hover:bg-gray-500/10 dark:bg-teal-400/10 px-3 py-1 text-xs font-medium leading-5 text-gray-500 dark:text-teal-300 font-[family-name:var(--font-geist-mono)]">{tech}</div>
                                 </li>
                             ))}
                         </ul>
