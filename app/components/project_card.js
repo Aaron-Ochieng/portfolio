@@ -1,4 +1,4 @@
-// import Image from "next/image";
+import Image from "next/image";
 import Link from "next/link";
 
 export default async function ProjectCard({ description, name, languages, url }) {
@@ -24,7 +24,7 @@ export default async function ProjectCard({ description, name, languages, url })
 
                         </ul>
                     </div>
-                    {/* <Image alt="Build a Spotify Connected App Newline course marketing card" loading="lazy" width={200} height={48} decoding="async" data-nimg="1" className="rounded border-2 border-slate-200/10 transition group-hover:border-slate-200/30 sm:order-1 sm:col-span-2 sm:translate-y-1" style="color:transparent" src={"./assets/developer.svg"} /> */}
+                     <Image alt="just an hidden image" loading="lazy" width={200} height={48} decoding="async" data-nimg="1" className="rounded border-2 border-slate-200/10 transition group-hover:border-slate-200/30 sm:order-1 sm:col-span-2 sm:translate-y-1 opacity-0" style="color:transparent" src="./assets/developer.svg" />
                 </div>
             </li>
         </section>
