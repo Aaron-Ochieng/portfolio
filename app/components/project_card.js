@@ -24,7 +24,7 @@ export default async function ProjectCard({ description, name, languages, url, g
 
                         </ul>
                     </div>
-                        <Image src={gif} width={200} height={500} alt={gif} className="rounded border-2 border-slate-200/10 transition object-fill group-hover:border-slate-200/30 sm:order-1 sm:col-span-2 sm:translate-y-1 opacity-0" />
+                        <Image src={gif} width={200} unoptimized height={500} alt={gif} className="rounded border-2 border-slate-200/10 transition object-fill group-hover:border-slate-200/30 sm:order-1 sm:col-span-2 sm:translate-y-1 opacity-0" />
 
                 </div>
             </li>
