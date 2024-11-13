@@ -16,7 +16,7 @@ export const work = {
         desc: `I've currently been training in the company's projects with my peers to enhance my programming skills in C, Golang, JavaScript, UX - UI Design, Rust ...etc.
         It's a peer to peer learning model to enhance my skills for the market jobs`,
         pos: "Apprentice Developer",
-        technology: ["Golang", "Javascript", "Shell", "UX"],
+        technology: ["Golang", "Javascript", "Shell", "UX", "Node", "Git", "Docker"],
         date: "Apr, 2024 - Present",
         company: "Zone 01 Kisumu",
         url: "https://www.zone01kisumu.ke"
