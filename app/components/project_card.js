@@ -9,7 +9,7 @@ export default async function ProjectCard({ description, name, languages, url })
                 <div className="group relative grid gap-4 pb-1 transition-all sm:grid-cols-8 sm:gap-8 md:gap-4 lg:hover:!opacity-100 lg:group-hover/list:opacity-50">
                     <div className="z-10 sm:order-2 sm:col-span-6">
                         <h3>
-                            <Link href={url} className="inline-flex items-baseline font-medium leading-tight text-gray-600 dark:text-slate-300   group/link text-base" >
+                            <Link href={url} className="inline-flex items-baseline font-medium text-xl leading-tight text-gray-600 dark:text-green-300 dark:hover:text-green-300/80" >
                                 <span>{name}
                                 </span>
                             </Link>
@@ -18,7 +18,7 @@ export default async function ProjectCard({ description, name, languages, url })
                         <ul className="mt-2 flex flex-wrap">
                             {languages.map((ln, index) => (
                                 <li className="mr-1.5 mt-2" key={index}>
-                                    <div className="flex items-center rounded-full  bg-[#d5deef] dark:bg-teal-400/10 px-3 py-1 text-xs font-medium leading-5 text-gray-500 dark:text-teal-300 font-[family-name:var(--font-geist-mono)]">{ln}</div>
+                                    <div className="flex items-center rounded-full  bg-[#d5deef] dark:bg-green-400/10 dark:hover:bg-green-400/20 px-3 py-1 text-xs font-medium leading-5 text-gray-500 dark:text-green-300  font-[family-name:var(--font-geist-mono)]">{ln}</div>
                                 </li>
                             ))}
 
