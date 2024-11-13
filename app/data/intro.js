@@ -18,7 +18,7 @@ export const work = {
         technology: ["golang", "javascript", "shell", "UX"],
         date: "Apr, 2024 - Present",
         company: "Zone 01 Kisumu",
-        url: "www.zone01kisumu.ke"
+        url: "https://www.zone01kisumu.ke"
     },
     work_2: {
         desc: "One month of intensive coding to access my skills for the selection process into the Zone01 Kisumu 2 year program. ",
@@ -26,7 +26,7 @@ export const work = {
         technology: ["golang", "shell"],
         date: "Oct, 2023 - Nov, 2023 ",
         company: "Zone 01 Kisumu",
-        url: "www.zone01kisumu.ke"
+        url: "https://www.zone01kisumu.ke"
     },
     work_3: {
         desc: `
