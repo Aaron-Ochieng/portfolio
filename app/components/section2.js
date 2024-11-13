@@ -50,9 +50,9 @@ export default function Section2() {
 
                 <div>
                     <div className="mb-4 font-[family-name:var(--font-geist-mono)] text-gray-600 dark:text-gray-300">
-                        {Object.entries(projects).map(([key, { name, description, languages, url }]) => (
+                        {Object.entries(projects).map(([key, { name, description, languages, url ,gif}]) => (
                             <ol key={key}>
-                                <ProjectCard name={name} description={description} languages={languages} url={url} />
+                                <ProjectCard name={name} description={description} languages={languages} url={url} gif={gif}/>
                             </ol>
                         ))}
                     </div>

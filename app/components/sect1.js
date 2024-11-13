@@ -22,7 +22,7 @@ export default function Section1() {
                         </li>
                         <li>
                             <Link className="group flex items-center py-3 " href="#experience">
-                            <span className="nav-indicator mr-4 h-px w-8 bg-slate-600 transition-all group-hover:w-16 group-hover:bg-slate-400  group-focus-visible:bg-slate-400 dark:group-hover:bg-slate-200 group-focus-visible:w-16 dark:group-focus-visible:bg-slate-200 motion-reduce:transition-none"></span>
+                            <span className="span-link-1"></span>
                                 <span className="nav-text text-xs font-bold uppercase tracking-widest text-slate-500 group-hover:text-blue-400 group-focus-visible:text-blue-300 dark:group-hover:text-slate-200 dark:group-focus-visible:text-slate-200">Experience</span>
                             </Link>
                         </li>
@@ -37,22 +37,22 @@ export default function Section1() {
             </div>
             <ul className="ml-1 mt-8 flex items-center" aria-label="Social media">
                 <li className="mr-5 shrink-0 text-xs">
-                    <Link className="block hover:text-gray-400 hover:scale-150 text-gray-400 dark:hover:text-slate-200" href="https://github.com/Aaron-Ochieng" target="_blank" rel="noreferrer noopener" title="GitHub">
+                    <Link className="btn-links" href="https://github.com/Aaron-Ochieng" target="_blank" rel="noreferrer noopener" title="GitHub">
                         <FaGithub className="h-6 w-6" />
                     </Link>
                 </li>
                 <li className="mr-5 shrink-0 text-xs">
-                    <Link className="block hover:text-gray-400 hover:scale-150 text-gray-400 dark:hover:text-slate-200" href="https://dev.to" target="_blank" rel="noreferrer noopener" title="Dev.To">
+                    <Link className="btn-links" href="https://dev.to/aoron-ochieng" target="_blank" rel="noreferrer noopener" title="Dev.To">
                         <BiLogoDevTo className="h-6 w-6" />
                     </Link>
                 </li>
                 <li className="mr-5 shrink-0 text-xs">
-                    <Link className="block hover:text-gray-400 hover:scale-150 text-gray-400 dark:hover:text-slate-200" href="https://ke.linkedin.com/" target="_blank" rel="noreferrer noopener" title="LinkedIn">
+                    <Link className="btn-links" href="https://ke.linkedin.com/" target="_blank" rel="noreferrer noopener" title="LinkedIn">
                         <FaLinkedin className="h-6 w-6" />
                     </Link>
                 </li>
                 <li className="mr-5 shrink-0 text-xs">
-                    <Link className="block hover:text-gray-400 hover:scale-150 text-gray-400 dark:hover:text-slate-200" href="https://x.com/Aaron_Ochieng_" target="_blank" rel="noreferrer noopener" title="X">
+                    <Link className="btn-links" href="https://x.com/Aaron_Ochieng_" target="_blank" rel="noreferrer noopener" title="X">
                         <FaXTwitter className="h-6 w-6" />
                     </Link>
                 </li>
