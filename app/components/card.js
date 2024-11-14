@@ -1,4 +1,9 @@
 import Link from "next/link";
+import { BiLogoFlutter, BiLogoMongodb } from "react-icons/bi";
+import { FaDocker, FaFigma, FaGitAlt, FaGolang, FaHtml5, FaNode, FaPython } from "react-icons/fa6";
+import { RiJavascriptFill } from "react-icons/ri";
+import { C } from "../data/svg";
+import { SiGnubash, SiSqlite } from "react-icons/si";
 
 export default function Card({ date, position, company, technology, description, url }) {
     return (
@@ -38,7 +43,24 @@ export default function Card({ date, position, company, technology, description,
                         <ul className="mt-2 flex flex-wrap">
                             {technology.map((tech, index) => (
                                 <li className="mr-1.5 mt-2" key={index}>
-                                    <div className="flex items-center rounded-full  bg-[#d5deef] hover:bg-gray-500/10 dark:bg-green-400/10 px-3 py-1 text-xs font-medium leading-5 text-gray-500 dark:text-green-300 font-[family-name:var(--font-geist-mono)]">{tech}</div>
+                                    <div className="flex items-center rounded-full  bg-[#d5deef] hover:bg-gray-500/10 dark:bg-green-400/10 px-3 py-1 text-xs font-medium leading-5 text-gray-500 dark:text-green-300 font-[family-name:var(--font-geist-mono)]">
+                                        {
+                                            tech === "HTML" ? <FaHtml5 className="mr-2 text-orange-700" /> :
+                                                tech === "Git" ? <FaGitAlt className="mr-2 text-red-500" /> :
+                                                    tech === "Golang" ? <FaGolang className="mr-2 text-blue-500" /> :
+                                                        tech === "Javascript" ? <RiJavascriptFill className="mr-2 text-yellow-500" /> :
+                                                            tech === "Flutter" ? <BiLogoFlutter className="mr-2 text-blue-500" /> :
+                                                                tech === "C" ? <C /> :
+                                                                    tech === "SQLite3" ? <SiSqlite className="mr-2" /> :
+                                                                        tech === "Shell" ? <SiGnubash className="mr-2 text-orange-500" /> :
+                                                                                tech === "Python" ? <FaPython className="mr-2" /> :
+                                                                                    tech === "Docker" ? <FaDocker className="mr-2 text-blue-500" /> :
+                                                                                        tech === "Node" ? <FaNode className="mr-2" /> :
+                                                                                            tech === "UX" ? <FaFigma className="mr-2 text-red-500" /> :
+                                                                                                <></>
+                                        }
+                                        {tech}
+                                    </div>
                                 </li>
                             ))}
                         </ul>
