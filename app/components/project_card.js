@@ -35,7 +35,7 @@ export default async function ProjectCard({ description, name, languages, url })
                                                                         ln === "Shell" ? <SiGnubash className="mr-2 text-orange-700" /> :
                                                                             ln === "MongoDB" ? <BiLogoMongodb className="mr-2 text-green-500" /> :
                                                                                 ln === "Python" ? <PythonIcon /> :
-                                                                                    ln === "MakeFile" ? <SiGnu className="mr-2 text-gray-700"/> :
+                                                                                    ln === "MakeFile" ? <SiGnu className="mr-2 text-gray-700 dark:text-gray-200"/> :
                                                                                         // <FaPython className="mr-2 bg-gradient-to-r from-blue-600 via-green-500 to-indigo-400 inline-block text-transparent bg-clip-text"/> :
                                                                                         <></>
                                         }
