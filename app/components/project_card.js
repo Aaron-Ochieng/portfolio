@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { C, PythonIcon } from "@/app/data/svg"
-import { FaGolang, FaHtml5, FaPython } from "react-icons/fa6";
+import { FaGitAlt, FaGolang, FaHtml5 } from "react-icons/fa6";
 import { SiGnu, SiGnubash, SiSqlite } from "react-icons/si";
 import { BiLogoFlutter, BiLogoMongodb } from "react-icons/bi";
 import { RiJavascriptFill } from "react-icons/ri"
