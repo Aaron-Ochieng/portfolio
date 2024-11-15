@@ -1,6 +1,7 @@
 import localFont from "next/font/local";
 import "./globals.css";
 import { Provider } from "./provider";
+import ThemeSwitcher from "./themeswitcher";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -30,6 +31,7 @@ export default function RootLayout({ children }) {
         className={`${geistSans.variable} ${geistMono.variable} ${typingFont.variable} antialiased bg-blue-50 dark:bg-slate-900 container mx-auto min-h-screen-max-screen-xl px-6 py-10 font-sans md:px-12 md:py-20`}
       >
         <Provider>
+          <ThemeSwitcher />
           <div className="mt-10">
             {children}
           </div>

@@ -31,7 +31,7 @@ export default async function ProjectCard({ description, name, languages, url })
                                                         ln === "Javascript" ? <RiJavascriptFill className="mr-2 text-yellow-500" /> :
                                                             ln === "Flutter" ? <BiLogoFlutter className="mr-2 text-blue-600" /> :
                                                                 ln === "C" ? <C /> :
-                                                                    ln === "SQLite3" ? <SiSqlite className="mr-2 text-gray-600" /> :
+                                                                    ln === "SQLite3" ? <SiSqlite className="mr-2 text-blue-500" /> :
                                                                         ln === "Shell" ? <SiGnubash className="mr-2 text-orange-700" /> :
                                                                             ln === "MongoDB" ? <BiLogoMongodb className="mr-2 text-green-500" /> :
                                                                                 ln === "Python" ? <PythonIcon /> :
