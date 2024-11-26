@@ -68,12 +68,6 @@ export const projects = {
         languages: ["Flutter"],
         url: "https://github.com/Aaron-Ochieng/food_app.git"
     },
-    project5: {
-        name: "Guess It",
-        description: "A golang project to test mathematical skills & knowledge in statistics. The project is used to predict the next number range from reading a text file | giving it a number from the terminal",
-        languages: ["Golang"],
-        url: "https://github.com/Aaron-Ochieng/guess-it-1.git"
-    },
     project7: {
         name: "Net Cat",
         description: "A recreation of netcat server functionality.Its a terminal app written in golang & It behaves like a telegram app. The app allows a max number of conections of 10 in the server, message formatting, not sending of empty messages ...etc",
