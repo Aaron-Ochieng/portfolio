@@ -1,0 +1,317 @@
+//Factorial steps
+pub fn count_factorial_steps(factorial: u64) -> u64 {
+    let mut step = 0;
+    let mut multiplier = 1;
+    let mut curr_val = factorial;
+
+    loop {
+        if curr_val < 2 {
+            return step;
+        } else if (curr_val % multiplier) > 0 {
+            return 0;
+        }
+        curr_val /= multiplier;
+        step += 1;
+        multiplier += 1;
+    }
+}
+
+pub fn lucas_number(n: u32) -> u32 {
+    match n {
+        0 => 2,
+        1 => 1,
+        _ => lucas_number(n - 1) + lucas_number(n - 2),
+    }
+}
+
+
+
+pub struct Film {
+    pub name: String,
+}
+
+pub fn take_film_name(to_consume: Film) -> String {
+    to_consume.name
+}
+
+pub fn read_film_name(only_to_return: &Film) -> String {
+    only_to_return.name.clone()
+}
+
+//Matrix determinant
+pub fn matrix_determinant(matrix: [[isize; 3]; 3]) -> isize {
+    matrix[0][0] * matrix[1][1] * matrix[2][2]
+        + matrix[0][1] * matrix[1][2] * matrix[2][0]
+        + matrix[0][2] * matrix[1][0] * matrix[2][1]
+        - matrix[0][0] * matrix[1][2] * matrix[2][1]
+        - matrix[0][1] * matrix[1][0] * matrix[2][2]
+        - matrix[0][2] * matrix[1][1] * matrix[2][0]
+}
+
+
+// Check username
+pub enum AccessLevel {
+    Guest,
+    Normal,
+    Admin,
+}
+
+pub struct User {
+    pub access_level: AccessLevel,
+    pub name: String,
+}
+
+impl User {
+    pub fn new(user: String, access_level: AccessLevel) -> User {
+        User {
+            access_level,
+            name: user,
+        }
+    }
+
+    pub fn send_name(&self) -> Option<&str> {
+        match &self.access_level {
+            AccessLevel::Guest => None,
+            _ => Some(&self.name),
+        }
+    }
+}
+
+pub fn check_user_name(user: &User) -> (bool, &str) {
+    match user.send_name() {
+        Some(name) => (true, name),
+        None => (false, "ERROR: User is guest"),
+    }
+}
+
+
+#[derive(Debug, PartialEq, Eq, Clone, Copy)]
+pub enum ErrorOffice {
+    OfficeClose(u32),
+    OfficeNotFound(u32),
+    OfficeFull(u32),
+}
+
+#[derive(PartialEq, Eq, Clone, Copy)]
+pub struct OfficeOne {
+    pub next_office: Result<OfficeTwo, ErrorOffice>,
+}
+
+#[derive(PartialEq, Eq, Clone, Copy)]
+pub struct OfficeTwo {
+    pub next_office: Result<OfficeThree, ErrorOffice>,
+}
+
+#[derive(PartialEq, Eq, Clone, Copy)]
+pub struct OfficeThree {
+    pub next_office: Result<OfficeFour, ErrorOffice>,
+}
+
+#[derive(PartialEq, Eq, Clone, Copy)]
+pub struct OfficeFour {
+    pub document_id: Result<u32, ErrorOffice>,
+}
+
+impl OfficeOne {
+    pub fn get_document_id(&self) -> Result<u32, ErrorOffice> {
+        self.next_office?.next_office?.next_office?.document_id
+    }
+}
+
+
+
+
+
+#[derive(Debug, Eq, PartialEq)]
+pub enum Hat {
+    Snapback,
+    Baseball,
+    Fedora,
+}
+
+#[derive(Debug, Eq, PartialEq)]
+pub enum Jacket {
+    White,
+    Black,
+    Flowers,
+}
+
+#[derive(Debug, Eq, PartialEq)]
+pub struct Outfit {
+    pub jacket: Jacket,
+    pub hat: Hat,
+}
+
+pub fn choose_outfit(
+    formality_level: Option<u32>,
+    invitation_message: Result<&str, &str>,
+) -> Outfit {
+    let mut outfit = Outfit {
+        jacket: Jacket::Black,
+        hat: Hat::Snapback,
+    };
+
+    match formality_level {
+        Some(level) => {
+            if level > 0 {
+                outfit.jacket = Jacket::White;
+            }
+        }
+        _ => {
+            outfit.jacket = Jacket::Flowers;
+        }
+    }
+    match invitation_message {
+        Ok(_) => {
+            outfit.hat = Hat::Fedora;
+        }
+        Err(_) => {
+            if let Jacket::Flowers = outfit.jacket {
+                outfit.hat = Hat::Baseball;
+            }
+        }
+    }
+    outfit
+}
+
+
+pub fn rot21(input: &str) -> String {
+    input
+        .chars()
+        .map(|character| match character {
+            'a'..='z' => {
+                ((((character as u8) - b'a') as i8 + 21).rem_euclid(26) as u8 + b'a') as char
+            }
+            'A'..='Z' => {
+                ((((character as u8) - b'A') as i8 + 21).rem_euclid(26) as u8 + b'A') as char
+            }
+            _ => character,
+        })
+        .collect::<String>()
+}
+
+
+
+pub mod library {
+    pub mod writers {
+        use super::books::*;
+        pub struct Writer {
+            pub first_name: String,
+            pub last_name: String,
+            pub books: Vec<Book>,
+        }
+    }
+    pub mod books {
+        pub struct Book {
+            pub title: String,
+            pub year: usize,
+        }
+    }
+}
+pub use library::writers::Writer;
+
+pub fn order_books(writer: &mut Writer) {
+    writer
+        .books
+        .sort_by(|a, b| a.title.to_lowercase().cmp(&b.title.to_lowercase()))
+}
+
+
+
+
+#[derive(PartialEq, Eq, Debug)]
+pub enum PrimeErr {
+    Even,
+    Divider(u32),
+}
+
+pub fn prime_checker(nb: u32) -> Option<Result<u32, PrimeErr>> {
+    if nb == 0 || nb == 1 {
+        return None;
+    } else if nb == 2 {
+        return Some(Ok(nb));
+    } else if nb % 2 == 0 {
+        return Some(Err(PrimeErr::Even));
+    } else {
+        let mut divider = 3;
+        let max_divide = ((nb as f64).sqrt() + 1.0) as u32;
+        while divider < max_divide {
+            if nb % divider == 0 {
+                return Some(Err(PrimeErr::Divider(divider)));
+            } else {
+                divider += 2;
+            }
+        }
+    }
+    Some(Ok(nb))
+}
+
+
+
+
+//Queen checker
+#[derive(Debug)]
+pub struct ChessPosition {
+    pub rank: i32,
+    pub file: i32,
+}
+
+#[derive(Debug)]
+pub struct Queen {
+    pub position: ChessPosition,
+}
+
+impl ChessPosition {
+    pub fn new(rank: i32, file: i32) -> Option<Self> {
+        if rank < 0 || rank > 7 || file < 0 || file > 7 {
+            None
+        } else {
+            Some(Self { rank, file })
+        }
+    }
+}
+
+impl Queen {
+    pub fn new(position: ChessPosition) -> Self {
+        Self { position }
+    }
+
+    pub fn can_attack(&self, other: &Queen) -> bool {
+        let self_pos = &self.position;
+        let other_pos = &other.position;
+
+        self_pos.rank == other_pos.rank
+            || self_pos.file == other_pos.file
+            || Queen::are_on_diagonal(self_pos, other_pos)
+    }
+
+    pub fn are_on_diagonal(self_pos: &ChessPosition, other_pos: &ChessPosition) -> bool {
+        let rank_diff = (self_pos.rank - other_pos.rank).abs();
+        let file_diff = (self_pos.file - other_pos.file).abs();
+
+        rank_diff == file_diff
+    }
+}
+
+
+
+pub fn scytale_decoder(s: String, letters_per_turn: u32) -> Option<String> {
+    if s.is_empty() || letters_per_turn == 0 {
+        None
+    } else {
+        let mut decoded_s = "".to_string();
+        let mut start = 0;
+
+        while decoded_s.len() < s.len() {
+            decoded_s.push(s.chars().nth(start).unwrap());
+
+            let mut next = start + letters_per_turn as usize;
+            while next < s.len() {
+                decoded_s.push(s.chars().nth(next).unwrap());
+                next += letters_per_turn as usize;
+            }
+            start += 1;
+        }
+        Some(decoded_s)
+    }
+}
