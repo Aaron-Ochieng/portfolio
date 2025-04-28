@@ -1,4 +1,23 @@
-//Factorial steps
+pub fn min_and_max(nb_1: i32, nb_2: i32, nb_3: i32) -> (i32, i32) {
+    let mut tmp_min = nb_1;
+    let mut tmp_max = nb_1;
+
+    if nb_2 < tmp_min {
+        tmp_min = nb_2;
+    }
+    if nb_2 > tmp_max {
+        tmp_max = nb_2;
+    }
+    if nb_3 < tmp_min {
+        tmp_min = nb_3;
+    }
+    if nb_3 > tmp_max {
+        tmp_max = nb_3;
+    }
+
+    (tmp_min, tmp_max)
+}
+
 pub fn count_factorial_steps(factorial: u64) -> u64 {
     let mut step = 0;
     let mut multiplier = 1;
@@ -16,208 +35,122 @@ pub fn count_factorial_steps(factorial: u64) -> u64 {
     }
 }
 
-pub fn lucas_number(n: u32) -> u32 {
-    match n {
-        0 => 2,
-        1 => 1,
-        _ => lucas_number(n - 1) + lucas_number(n - 2),
+#[derive(Debug, PartialEq, Eq)]
+pub struct Matrix(pub (i32, i32), pub (i32, i32));
+
+pub fn multiply(m: Matrix, val: i32) -> Matrix {
+    Matrix(
+        ((m.0).0 * val, (m.0).1 * val),
+        ((m.1).0 * val, (m.1).1 * val),
+    )
+}
+
+pub fn reverse_it(nbr: i32) -> String {
+    let s = &nbr.to_string();
+    let str_nbr = s.trim_start_matches('-');
+    let rev: Vec<char> = str_nbr.chars().rev().collect();
+    if nbr >= 0 {
+        return format!("{}{}", rev.into_iter().collect::<String>(), str_nbr);
     }
+    return format!("-{}{}", rev.into_iter().collect::<String>(), str_nbr);
 }
 
 
+use std::collections::HashMap;
 
-pub struct Film {
-    pub name: String,
-}
-
-pub fn take_film_name(to_consume: Film) -> String {
-    to_consume.name
-}
-
-pub fn read_film_name(only_to_return: &Film) -> String {
-    only_to_return.name.clone()
-}
-
-//Matrix determinant
-pub fn matrix_determinant(matrix: [[isize; 3]; 3]) -> isize {
-    matrix[0][0] * matrix[1][1] * matrix[2][2]
-        + matrix[0][1] * matrix[1][2] * matrix[2][0]
-        + matrix[0][2] * matrix[1][0] * matrix[2][1]
-        - matrix[0][0] * matrix[1][2] * matrix[2][1]
-        - matrix[0][1] * matrix[1][0] * matrix[2][2]
-        - matrix[0][2] * matrix[1][1] * matrix[2][0]
-}
-
-
-// Check username
-pub enum AccessLevel {
-    Guest,
-    Normal,
-    Admin,
-}
-
-pub struct User {
-    pub access_level: AccessLevel,
-    pub name: String,
-}
-
-impl User {
-    pub fn new(user: String, access_level: AccessLevel) -> User {
-        User {
-            access_level,
-            name: user,
-        }
-    }
-
-    pub fn send_name(&self) -> Option<&str> {
-        match &self.access_level {
-            AccessLevel::Guest => None,
-            _ => Some(&self.name),
-        }
-    }
-}
-
-pub fn check_user_name(user: &User) -> (bool, &str) {
-    match user.send_name() {
-        Some(name) => (true, name),
-        None => (false, "ERROR: User is guest"),
-    }
-}
-
-
-#[derive(Debug, PartialEq, Eq, Clone, Copy)]
-pub enum ErrorOffice {
-    OfficeClose(u32),
-    OfficeNotFound(u32),
-    OfficeFull(u32),
-}
-
-#[derive(PartialEq, Eq, Clone, Copy)]
-pub struct OfficeOne {
-    pub next_office: Result<OfficeTwo, ErrorOffice>,
-}
-
-#[derive(PartialEq, Eq, Clone, Copy)]
-pub struct OfficeTwo {
-    pub next_office: Result<OfficeThree, ErrorOffice>,
-}
-
-#[derive(PartialEq, Eq, Clone, Copy)]
-pub struct OfficeThree {
-    pub next_office: Result<OfficeFour, ErrorOffice>,
-}
-
-#[derive(PartialEq, Eq, Clone, Copy)]
-pub struct OfficeFour {
-    pub document_id: Result<u32, ErrorOffice>,
-}
-
-impl OfficeOne {
-    pub fn get_document_id(&self) -> Result<u32, ErrorOffice> {
-        self.next_office?.next_office?.next_office?.document_id
-    }
-}
-
-
-
-
-
-#[derive(Debug, Eq, PartialEq)]
-pub enum Hat {
-    Snapback,
-    Baseball,
-    Fedora,
-}
-
-#[derive(Debug, Eq, PartialEq)]
-pub enum Jacket {
-    White,
-    Black,
-    Flowers,
-}
-
-#[derive(Debug, Eq, PartialEq)]
-pub struct Outfit {
-    pub jacket: Jacket,
-    pub hat: Hat,
-}
-
-pub fn choose_outfit(
-    formality_level: Option<u32>,
-    invitation_message: Result<&str, &str>,
-) -> Outfit {
-    let mut outfit = Outfit {
-        jacket: Jacket::Black,
-        hat: Hat::Snapback,
-    };
-
-    match formality_level {
-        Some(level) => {
-            if level > 0 {
-                outfit.jacket = Jacket::White;
-            }
-        }
-        _ => {
-            outfit.jacket = Jacket::Flowers;
-        }
-    }
-    match invitation_message {
-        Ok(_) => {
-            outfit.hat = Hat::Fedora;
-        }
-        Err(_) => {
-            if let Jacket::Flowers = outfit.jacket {
-                outfit.hat = Hat::Baseball;
-            }
-        }
-    }
-    outfit
-}
-
-
-pub fn rot21(input: &str) -> String {
-    input
-        .chars()
-        .map(|character| match character {
-            'a'..='z' => {
-                ((((character as u8) - b'a') as i8 + 21).rem_euclid(26) as u8 + b'a') as char
-            }
-            'A'..='Z' => {
-                ((((character as u8) - b'A') as i8 + 21).rem_euclid(26) as u8 + b'A') as char
-            }
-            _ => character,
+pub fn counting_words(words: &str) -> HashMap<String, u32> {
+    words
+        .to_lowercase()
+        .split(|c: char| !c.is_alphanumeric() && c != '\'')
+        .map(|w| w.trim_matches('\''))
+        .filter(|w| !w.is_empty())
+        .fold(HashMap::new(), |mut map, w| {
+            *map.entry(String::from(w)).or_default() += 1;
+            map
         })
-        .collect::<String>()
 }
 
+use std::collections::HashMap;
 
+pub fn smallest(h: HashMap<&str, i32>) -> i32 {
+    let mut smallest_value = i32::MAX;
 
-pub mod library {
-    pub mod writers {
-        use super::books::*;
-        pub struct Writer {
-            pub first_name: String,
-            pub last_name: String,
-            pub books: Vec<Book>,
+    for (_, v) in h.iter() {
+        if *v < smallest_value {
+            smallest_value = *v;
         }
     }
-    pub mod books {
-        pub struct Book {
-            pub title: String,
-            pub year: usize,
-        }
+    return smallest_value;
+}
+
+
+pub fn remove_letter_sensitive(s: &str, letter: char) -> String {
+    s.replace(letter, "")
+}
+
+pub fn remove_letter_insensitive(s: &str, letter: char) -> String {
+    let lower_letter = letter.to_lowercase().to_string();
+    let upper_letter = letter.to_uppercase().to_string();
+    s.replace(&upper_letter, &lower_letter)
+        .replace(&lower_letter, "")
+}
+
+pub fn swap_letter_case(s: &str, letter: char) -> String {
+    s.split("")
+        .into_iter()
+        .map(|s| {
+            s.chars()
+                .filter_map(|c| {
+                    if c.to_string() == letter.to_lowercase().to_string() {
+                        c.to_uppercase().next()
+                    } else if c.to_string() == letter.to_uppercase().to_string() {
+                        c.to_lowercase().next()
+                    } else {
+                        Some(c)
+                    }
+                })
+                .collect()
+        })
+        .collect::<Vec<String>>()
+        .join("")
+}
+
+
+pub fn parts_sums(ls: &[u64]) -> Vec<u64> {
+    let mut res = vec![];
+    let mut sum: u64 = ls.iter().sum();
+    res.push(sum);
+    for nbr in ls.iter().rev() {
+        sum -= nbr;
+        res.push(sum);
+    }
+    res
+}
+
+pub fn inv_pyramid(st: String, max: usize) -> Vec<String> {
+    let mut vec = Vec::with_capacity(2 * max);
+    let mut create_line = |amount| vec.push(format!("{:>1$}", st.repeat(amount), 2 * amount));
+
+    for amount in 1..max + 1 {
+        create_line(amount)
+    }
+
+    // the `rev` method reverses the range
+    for amount in (1..max).rev() {
+        create_line(amount)
+    }
+    return vec;
+}
+
+const WORD: &str = "stupid";
+
+pub fn check_ms(message: &str) -> Result<&str, &str> {
+    if message.is_empty() || message.contains(WORD) {
+        Err("ERROR: illegal")
+    } else {
+        Ok(message)
     }
 }
-pub use library::writers::Writer;
-
-pub fn order_books(writer: &mut Writer) {
-    writer
-        .books
-        .sort_by(|a, b| a.title.to_lowercase().cmp(&b.title.to_lowercase()))
-}
-
-
-
 
 #[derive(PartialEq, Eq, Debug)]
 pub enum PrimeErr {
@@ -246,327 +179,40 @@ pub fn prime_checker(nb: u32) -> Option<Result<u32, PrimeErr>> {
     Some(Ok(nb))
 }
 
+pub fn scytale_decoder(s: String, letters_per_turn: u32) -> Option<String> {
+    if s.is_empty() || letters_per_turn == 0 {
+        None
+    } else {
+        let mut decoded_s = "".to_string();
+        let mut start = 0;
 
+        while decoded_s.len() < s.len() {
+            decoded_s.push(s.chars().nth(start).unwrap());
 
-
-//Queen checker
-#[derive(Debug)]
-pub struct ChessPosition {
-    pub rank: i32,
-    pub file: i32,
-}
-
-#[derive(Debug)]
-pub struct Queen {
-    pub position: ChessPosition,
-}
-
-impl ChessPosition {
-    pub fn new(rank: i32, file: i32) -> Option<Self> {
-        if rank < 0 || rank > 7 || file < 0 || file > 7 {
-            None
-        } else {
-            Some(Self { rank, file })
-        }
-    }
-}
-
-impl Queen {
-    pub fn new(position: ChessPosition) -> Self {
-        Self { position }
-    }
-
-    pub fn can_attack(&self, other: &Queen) -> bool {
-        let self_pos = &self.position;
-        let other_pos = &other.position;
-
-        self_pos.rank == other_pos.rank
-            || self_pos.file == other_pos.file
-            || Queen::are_on_diagonal(self_pos, other_pos)
-    }
-
-    pub fn are_on_diagonal(self_pos: &ChessPosition, other_pos: &ChessPosition) -> bool {
-        let rank_diff = (self_pos.rank - other_pos.rank).abs();
-        let file_diff = (self_pos.file - other_pos.file).abs();
-
-        rank_diff == file_diff
-    }
-}
-
-
-
-use std::collections::HashMap;
-
-pub fn counting_words(words: &str) -> HashMap<String, u32> {
-    words
-        .to_lowercase()
-        .split(|c: char| !c.is_alphanumeric() && c != '\'')
-        .map(|w| w.trim_matches('\''))
-        .filter(|w| !w.is_empty())
-        .fold(HashMap::new(), |mut map, w| {
-            *map.entry(String::from(w)).or_default() += 1;
-            map
-        })
-}
-
-pub fn parts_sums(ls: &[u64]) -> Vec<u64> {
-    let mut res = vec![];
-    let mut sum: u64 = ls.iter().sum();
-    res.push(sum);
-    for nbr in ls.iter().rev() {
-        sum -= nbr;
-        res.push(sum);
-    }
-    res
-}
-
-
-pub fn inv_pyramid(st: String, max: usize) -> Vec<String> {
-   
-    let mut vec = Vec::with_capacity(2 * max);
-    let mut create_line = |amount| vec.push(format!("{:>1$}", st.repeat(amount), 2 * amount));
-
-    for amount in 1..max + 1 {
-        create_line(amount)
-    }
-
-    
-    for amount in (1..max).rev() {
-        create_line(amount)
-    }
-    return vec;
-}
-
-
-pub fn reverse_it(nbr: i32) -> String {
-    let s = &nbr.to_string();
-    let str_nbr = s.trim_start_matches('-');
-    let rev: Vec<char> = str_nbr.chars().rev().collect();
-    if nbr >= 0 {
-        return format!("{}{}", rev.into_iter().collect::<String>(), str_nbr);
-    }
-    return format!("-{}{}", rev.into_iter().collect::<String>(), str_nbr);
-}
-
-
-
-
-pub enum AccessLevel {
-    Guest,
-    Normal,
-    Admin,
-}
-
-pub struct User {
-    pub access_level: AccessLevel,
-    pub name: String,
-}
-
-impl User {
-    pub fn new(user: String, access_level: AccessLevel) -> User {
-        User {
-            access_level,
-            name: user,
-        }
-    }
-
-    pub fn send_name(&self) -> Option<&str> {
-        match &self.access_level {
-            AccessLevel::Guest => None,
-            _ => Some(&self.name),
-        }
-    }
-}
-
-pub fn check_user_name(user: &User) -> (bool, &str) {
-    match user.send_name() {
-        Some(name) => (true, name),
-        None => (false, "ERROR: User is guest"),
-    }
-}
-
-
-#[derive(Debug, PartialEq, Eq, Clone, Copy)]
-pub enum ErrorOffice {
-    OfficeClose(u32),
-    OfficeNotFound(u32),
-    OfficeFull(u32),
-}
-
-#[derive(PartialEq, Eq, Clone, Copy)]
-pub struct OfficeOne {
-    pub next_office: Result<OfficeTwo, ErrorOffice>,
-}
-
-#[derive(PartialEq, Eq, Clone, Copy)]
-pub struct OfficeTwo {
-    pub next_office: Result<OfficeThree, ErrorOffice>,
-}
-
-#[derive(PartialEq, Eq, Clone, Copy)]
-pub struct OfficeThree {
-    pub next_office: Result<OfficeFour, ErrorOffice>,
-}
-
-#[derive(PartialEq, Eq, Clone, Copy)]
-pub struct OfficeFour {
-    pub document_id: Result<u32, ErrorOffice>,
-}
-
-impl OfficeOne {
-    pub fn get_document_id(&self) -> Result<u32, ErrorOffice> {
-        self.next_office?.next_office?.next_office?.document_id
-    }
-}
-
-
-
-#[derive(Debug, Eq, PartialEq)]
-pub enum Hat {
-    Snapback,
-    Baseball,
-    Fedora,
-}
-
-#[derive(Debug, Eq, PartialEq)]
-pub enum Jacket {
-    White,
-    Black,
-    Flowers,
-}
-
-#[derive(Debug, Eq, PartialEq)]
-pub struct Outfit {
-    pub jacket: Jacket,
-    pub hat: Hat,
-}
-
-pub fn choose_outfit(
-    formality_level: Option<u32>,
-    invitation_message: Result<&str, &str>,
-) -> Outfit {
-    let mut outfit = Outfit {
-        jacket: Jacket::Black,
-        hat: Hat::Snapback,
-    };
-
-    match formality_level {
-        Some(level) => {
-            if level > 0 {
-                outfit.jacket = Jacket::White;
+            let mut next = start + letters_per_turn as usize;
+            while next < s.len() {
+                decoded_s.push(s.chars().nth(next).unwrap());
+                next += letters_per_turn as usize;
             }
+            start += 1;
         }
-        _ => {
-            outfit.jacket = Jacket::Flowers;
-        }
-    }
-    match invitation_message {
-        Ok(_) => {
-            outfit.hat = Hat::Fedora;
-        }
-        Err(_) => {
-            if let Jacket::Flowers = outfit.jacket {
-                outfit.hat = Hat::Baseball;
-            }
-        }
-    }
-    outfit
-}
-
-
-
-pub fn negative_spell(n: i64) -> String {
-    match n {
-        1.. => "error: positive number".to_string(),
-        0 => "zero".to_string(),
-        _ => format!("minus {}", spell(-n as u64)),
+        Some(decoded_s)
     }
 }
 
-pub fn spell(n: u64) -> String {
-    match n {
-        0..=99 => spells_below_100(n),
-        100..=999 => spells_hundreds(n),
-        _ => spells_bignum(n),
-    }
-}
-
-pub fn spells_below_100(n: u64) -> String {
-    match n {
-        0 => "zero".to_string(),
-        1 => "one".to_string(),
-        2 => "two".to_string(),
-        3 => "three".to_string(),
-        4 => "four".to_string(),
-        5 => "five".to_string(),
-        6 => "six".to_string(),
-        7 => "seven".to_string(),
-        8 => "eight".to_string(),
-        9 => "nine".to_string(),
-        10 => "ten".to_string(),
-        11 => "eleven".to_string(),
-        12 => "twelve".to_string(),
-        13 => "thirteen".to_string(),
-        14 => "fourteen".to_string(),
-        15 => "fifteen".to_string(),
-        16 => "fifteen".to_string(),
-        17 => "seventeen".to_string(),
-        18 => "eighteen".to_string(),
-        19 => "nineteen".to_string(),
-        20 => "twenty".to_string(),
-        30 => "thirty".to_string(),
-        40 => "forty".to_string(),
-        50 => "fifty".to_string(),
-        60 => "sixty".to_string(),
-        70 => "seventy".to_string(),
-        80 => "eighty".to_string(),
-        90 => "ninety".to_string(),
-        _ => {
-            let rem = n % 10;
-            format!("{}-{}", spells_below_100(n - rem), spells_below_100(rem))
+pub fn insertion_sort<T: Ord + Clone>(ar: &mut [T], steps: usize) {
+    assert!(steps > 0);
+    for i in 1..steps + 1 {
+        let key = ar[i].to_owned();
+        let mut j: i32 = i as i32 - 1;
+        while j >= 0 && key < ar[j as usize] {
+            // move the value to the next position
+            ar[(j + 1) as usize] = ar[j as usize].to_owned();
+            j -= 1;
         }
+        ar[(j + 1) as usize] = key
     }
 }
-
-pub fn spells_hundreds(n: u64) -> String {
-    let div = n / 100;
-    let rem = n % 100;
-    let mut enc_str = format!("{} hundred", spells_below_100(div));
-    if rem != 0 {
-        enc_str = format!("{} {}", enc_str, spells_below_100(rem));
-    }
-    enc_str
-}
-
-pub fn spells_bignum(n: u64) -> String {
-    let mut enc_chunks: Vec<String> = vec![];
-    let mut chunks: Vec<u64> = vec![0; 7];
-    let mut m = n;
-    for e in chunks.iter_mut() {
-        let rem = m % 1_000;
-        m /= 1_000;
-        *e += rem;
-    }
-    for (idx, chunk) in chunks.into_iter().enumerate() {
-        let substr = match idx {
-            0 => "",
-            1 => "thousand",
-            2 => "million",
-            3 => "billion",
-            4 => "trillion",
-            5 => "quadrillion",
-            _ => "quintillion",
-        };
-        if chunk != 0 {
-            enc_chunks.push(format!("{} {}", spell(chunk), substr).trim().to_string());
-        }
-    }
-    enc_chunks.reverse();
-    enc_chunks.join(" ")
-}
-
-
-
 
 fn main() {
     let args: Vec<String> = std::env::args().collect();
@@ -613,75 +259,50 @@ fn is_op(s: &str) -> bool {
     s == "+" || s == "-" || s == "*" || s == "/" || s == "%"
 }
 
-
-
-#[derive(Debug)]
-pub struct ChessPosition {
-    pub rank: i32,
-    pub file: i32,
-}
-
-#[derive(Debug)]
-pub struct Queen {
-    pub position: ChessPosition,
-}
-
-impl ChessPosition {
-    pub fn new(rank: i32, file: i32) -> Option<Self> {
-        if rank < 0 || rank > 7 || file < 0 || file > 7 {
-            None
-        } else {
-            Some(Self { rank, file })
-        }
-    }
-}
-
-impl Queen {
-    pub fn new(position: ChessPosition) -> Self {
-        Self { position }
-    }
-
-    pub fn can_attack(&self, other: &Queen) -> bool {
-        let self_pos = &self.position;
-        let other_pos = &other.position;
-
-        self_pos.rank == other_pos.rank
-            || self_pos.file == other_pos.file
-            || Queen::are_on_diagonal(self_pos, other_pos)
-    }
-
-    pub fn are_on_diagonal(self_pos: &ChessPosition, other_pos: &ChessPosition) -> bool {
-        let rank_diff = (self_pos.rank - other_pos.rank).abs();
-        let file_diff = (self_pos.file - other_pos.file).abs();
-
-        rank_diff == file_diff
-    }
-}
-
-
-
-pub fn scytale_decoder(s: String, letters_per_turn: u32) -> Option<String> {
-    if s.is_empty() || letters_per_turn == 0 {
-        None
-    } else {
-        let mut decoded_s = "".to_string();
-        let mut start = 0;
-
-        while decoded_s.len() < s.len() {
-            decoded_s.push(s.chars().nth(start).unwrap());
-
-            let mut next = start + letters_per_turn as usize;
-            while next < s.len() {
-                decoded_s.push(s.chars().nth(next).unwrap());
-                next += letters_per_turn as usize;
+pub fn rot21(input: &str) -> String {
+    input
+        .chars()
+        .map(|character| match character {
+            'a'..='z' => {
+                ((((character as u8) - b'a') as i8 + 21).rem_euclid(26) as u8 + b'a') as char
             }
-            start += 1;
-        }
-        Some(decoded_s)
-    }
+            'A'..='Z' => {
+                ((((character as u8) - b'A') as i8 + 21).rem_euclid(26) as u8 + b'A') as char
+            }
+            _ => character,
+        })
+        .collect::<String>()
 }
 
+pub mod library {
+    pub mod writers {
+        use super::books::*;
+        pub struct Writer {
+            pub first_name: String,
+            pub last_name: String,
+            pub books: Vec<Book>,
+        }
+    }
+    pub mod books {
+        pub struct Book {
+            pub title: String,
+            pub year: usize,
+        }
+    }
+}
+pub use library::writers::Writer;
 
+pub fn order_books(writer: &mut Writer) {
+    writer
+        .books
+        .sort_by(|a, b| a.title.to_lowercase().cmp(&b.title.to_lowercase()))
+}
+
+pub fn matrix_determinant_2(matrix: [[isize; 3]; 3]) -> isize {
+    matrix[0][0] * (matrix[1][1] * matrix[2][2] - matrix[1][2] * matrix[2][1])
+        - matrix[0][1] * (matrix[1][0] * matrix[2][2] - matrix[0][2] * matrix[2][1])
+        + matrix[0][2] * (matrix[1][0] * matrix[1][2] - matrix[1][1] * matrix[1][2])
+}
 
 #[derive(Debug, PartialEq, Eq)]
 pub struct OfficeWorker {
@@ -717,169 +338,6 @@ impl From<&str> for WorkerRole {
         }
     }
 }
-
-
-
-#[derive(Debug, Clone)]
-pub struct Matrix(pub Vec<Vec<i32>>);
-
-impl Matrix {
-    pub fn new(slice: &[&[i32]]) -> Self {
-        let mut inner = Vec::new();
-        for row in slice {
-            inner.push(row.to_vec());
-        }
-        Self(inner)
-    }
-}
-
-use std::fmt;
-
-impl fmt::Display for Matrix {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        for (i, row) in self.0.iter().enumerate() {
-            write!(f, "(")?;
-            for (j, el) in row.iter().enumerate() {
-                write!(f, "{}", el)?;
-                if j != row.len() - 1 {
-                    write!(f, " ")?;
-                }
-            }
-            write!(f, ")")?;
-            if i != self.0.len() - 1 {
-                write!(f, "\n")?;
-            }
-        }
-        Ok(())
-    }
-}
-
-
-
-use std::ops::Add;
-
-#[derive(Debug, PartialEq, Eq)]
-pub struct Garage<T> {
-    pub left: Option<T>,
-    pub right: Option<T>,
-}
-
-impl<T: Add<Output = T> + Copy> Garage<T> {
-    pub fn move_to_right(&mut self) {
-        if let Some(left_stuff) = self.left {
-            match self.right {
-                Some(right_stuff) => self.right = Some(right_stuff + left_stuff),
-                _ => self.right = Some(left_stuff),
-            }
-            self.left = None;
-        }
-    }
-    pub fn move_to_left(&mut self) {
-        if let Some(right_stuff) = self.right {
-            match self.left {
-                Some(left_stuff) => self.left = Some(left_stuff + right_stuff),
-                _ => self.left = Some(right_stuff),
-            }
-            self.right = None;
-        }
-    }
-}
-
-
-// Moving targets
-#[derive(Debug, PartialEq, Eq)]
-pub struct Target {
-    pub size: u32,
-    pub xp: u32,
-}
-
-pub struct Field {
-    head: Link,
-}
-
-type Link = Option<Box<Node>>;
-
-struct Node {
-    elem: Target,
-    next: Link,
-}
-
-impl Field {
-    pub fn new() -> Self {
-        Field { head: None }
-    }
-
-    pub fn push(&mut self, target: Target) {
-        let new_node = Box::new(Node {
-            elem: target,
-            next: self.head.take(),
-        });
-        self.head = Some(new_node);
-    }
-
-    pub fn pop(&mut self) -> Option<Target> {
-        self.head.take().map(|node| {
-            self.head = node.next;
-            node.elem
-        })
-    }
-
-    pub fn peek(&self) -> Option<&Target> {
-        self.head.as_ref().map(|node| &node.elem)
-    }
-
-    pub fn peek_mut(&mut self) -> Option<&mut Target> {
-        self.head.as_mut().map(|node| &mut node.elem)
-    }
-}
-
-use std::fmt;
-
-pub struct Park {
-    pub name: String,
-    pub park_type: ParkType,
-    pub address: String,
-    pub cap: String,
-    pub state: String,
-}
-
-pub enum ParkType {
-    Garden,
-    Forest,
-    Playground,
-}
-
-impl fmt::Display for Park {
-    fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
-        write!(f, "{} - ", self.park_type)?;
-
-        if self.name.is_empty() {
-            write!(f, "No name, ")?;
-        } else {
-            write!(f, "{}, ", self.name)?;
-        }
-
-        if self.address.is_empty() {
-            write!(f, "No address, ")?;
-        } else {
-            write!(f, "{}, ", self.address)?;
-        }
-
-        if self.cap.is_empty() {
-            write!(f, "No cap - ")?;
-        } else {
-            write!(f, "{} - ", self.cap)?;
-        }
-
-        if self.state.is_empty() {
-            write!(f, "No state")?;
-        } else {
-            write!(f, "{}", self.state)?;
-        }
-        Ok(())
-    }
-}
-
 
 
 
@@ -985,113 +443,82 @@ impl BloodType {
     }
 }
 
+#[derive(Debug, Clone)]
+pub struct Matrix(pub Vec<Vec<i32>>);
 
-impl fmt::Display for ParkType {
-    fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
-        match self {
-            ParkType::Garden => write!(f, "garden")?,
-            ParkType::Forest => write!(f, "forest")?,
-            ParkType::Playground => write!(f, "playground")?,
+impl Matrix {
+    pub fn new(slice: &[&[i32]]) -> Self {
+        let mut inner = Vec::new();
+        for row in slice {
+            inner.push(row.to_vec());
+        }
+        Self(inner)
+    }
+}
+
+use std::fmt;
+
+impl fmt::Display for Matrix {
+    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
+        for (i, row) in self.0.iter().enumerate() {
+            write!(f, "(")?;
+            for (j, el) in row.iter().enumerate() {
+                write!(f, "{}", el)?;
+                if j != row.len() - 1 {
+                    write!(f, " ")?;
+                }
+            }
+            write!(f, ")")?;
+            if i != self.0.len() - 1 {
+                write!(f, "\n")?;
+            }
         }
         Ok(())
     }
 }
 
-
-use std::cell::Ref;
-use std::cell::RefCell;
-use std::cell::RefMut;
-
-#[derive(Debug, Default, PartialEq, Eq)]
-pub struct Car {
-    pub color: String,
-    pub plate: String,
+#[derive(Debug)]
+pub struct ChessPosition {
+    pub rank: i32,
+    pub file: i32,
 }
 
 #[derive(Debug)]
-pub struct RentalBusiness {
-    pub car: RefCell<Car>,
+pub struct Queen {
+    pub position: ChessPosition,
 }
 
-impl RentalBusiness {
-    pub fn rent_car(&self) -> Ref<Car> {
-        self.car.borrow()
-    }
-
-    pub fn sell_car(&self) -> Car {
-        self.car.take()
-    }
-
-    pub fn repair_car(&self) -> RefMut<Car> {
-        self.car.borrow_mut()
-    }
-
-    pub fn change_car(&self, new_car: Car) {
-        self.car.replace(new_car);
-    }
-}
-
-
-
-use std::cell::{Cell, RefCell};
-
-#[derive(Debug, Default, Clone, Eq, PartialEq)]
-pub struct Blog {
-    pub drops: Cell<usize>,
-    pub states: RefCell<Vec<bool>>,
-}
-
-impl Blog {
-    pub fn new() -> Blog {
-        Blog::default()
-    }
-
-    pub fn new_article(&self, body: String) -> (usize, Article) {
-        let new_article = Article::new(self.new_id(), body, self);
-        self.states.borrow_mut().push(false);
-        (new_article.id, new_article)
-    }
-
-    pub fn new_id(&self) -> usize {
-        self.states.borrow().len()
-    }
-
-    pub fn is_dropped(&self, id: usize) -> bool {
-        self.states.borrow()[id]
-    }
-
-    pub fn add_drop(&self, id: usize) {
-        if self.is_dropped(id) {
-            panic!("{} is already dropped", id)
+impl ChessPosition {
+    pub fn new(rank: i32, file: i32) -> Option<Self> {
+        if rank < 0 || rank > 7 || file < 0 || file > 7 {
+            None
+        } else {
+            Some(Self { rank, file })
         }
-        self.states.borrow_mut()[id] = true;
-        self.drops.set(self.drops.get() + 1);
     }
 }
 
-#[derive(Debug, Clone, Eq, PartialEq)]
-pub struct Article<'a> {
-    id: usize,
-    body: String,
-    parent: &'a Blog,
-}
-
-impl<'a> Article<'a> {
-    pub fn new(id: usize, body: String, parent: &'a Blog) -> Article {
-        Article { id, body, parent }
+impl Queen {
+    pub fn new(position: ChessPosition) -> Self {
+        Self { position }
     }
 
-    pub fn discard(self) {
-        drop(self);
+    pub fn can_attack(&self, other: &Queen) -> bool {
+        let self_pos = &self.position;
+        let other_pos = &other.position;
+
+        self_pos.rank == other_pos.rank
+            || self_pos.file == other_pos.file
+            || Queen::are_on_diagonal(self_pos, other_pos)
+    }
+
+    pub fn are_on_diagonal(self_pos: &ChessPosition, other_pos: &ChessPosition) -> bool {
+        let rank_diff = (self_pos.rank - other_pos.rank).abs();
+        let file_diff = (self_pos.file - other_pos.file).abs();
+
+        rank_diff == file_diff
     }
 }
-
-impl<'a> Drop for Article<'a> {
-    fn drop(&mut self) {
-        self.parent.add_drop(self.id);
-    }
-}
-
 
 
 #[derive(Debug, Clone)]
@@ -1172,3 +599,391 @@ fn recursion_inv(node: &Link, q: &mut Queue) {
         return recursion_inv(&node.as_ref().unwrap().next_person, q);
     }
 }
+
+use std::cell::{Cell, RefCell};
+
+#[derive(Debug, Default, Clone, Eq, PartialEq)]
+pub struct Blog {
+    pub drops: Cell<usize>,
+    pub states: RefCell<Vec<bool>>,
+}
+
+impl Blog {
+    pub fn new() -> Blog {
+        Blog::default()
+    }
+
+    pub fn new_article(&self, body: String) -> (usize, Article) {
+        let new_article = Article::new(self.new_id(), body, self);
+        self.states.borrow_mut().push(false);
+        (new_article.id, new_article)
+    }
+
+    pub fn new_id(&self) -> usize {
+        self.states.borrow().len()
+    }
+
+    pub fn is_dropped(&self, id: usize) -> bool {
+        self.states.borrow()[id]
+    }
+
+    pub fn add_drop(&self, id: usize) {
+        if self.is_dropped(id) {
+            panic!("{} is already dropped", id)
+        }
+        self.states.borrow_mut()[id] = true;
+        self.drops.set(self.drops.get() + 1);
+    }
+}
+
+#[derive(Debug, Clone, Eq, PartialEq)]
+pub struct Article<'a> {
+    id: usize,
+    body: String,
+    parent: &'a Blog,
+}
+
+impl<'a> Article<'a> {
+    pub fn new(id: usize, body: String, parent: &'a Blog) -> Article {
+        Article { id, body, parent }
+    }
+
+    pub fn discard(self) {
+        drop(self);
+    }
+}
+
+impl<'a> Drop for Article<'a> {
+    fn drop(&mut self) {
+        self.parent.add_drop(self.id);
+    }
+}
+
+#[derive(Clone, Debug, PartialEq)]
+pub struct Table {
+    pub headers: Vec<String>,
+    pub body: Vec<Vec<String>>,
+}
+
+impl Table {
+    #[allow(dead_code)]
+    pub fn new() -> Self {
+        Self {
+            body: Vec::new(),
+            headers: Vec::new(),
+        }
+    }
+
+    #[allow(dead_code)]
+    pub fn add_row(&mut self, row: &[String]) {
+        assert_eq!(self.headers.len(), row.len());
+        self.body.push(row.to_vec());
+    }
+
+    #[allow(dead_code)]
+    pub fn add_col(&mut self, col: &[String]) {
+        let mut col_it = col.iter();
+
+        self.headers.push(col_it.next().unwrap().to_owned());
+        for (i, v) in col_it.enumerate() {
+            if self.body.len() <= i {
+                self.body.push(Vec::new());
+            }
+            self.body[i].push(v.to_owned());
+        }
+    }
+
+    #[allow(dead_code)]
+    fn get_col(&self, index: usize) -> Option<Vec<String>> {
+        let header = self.headers.get(index)?;
+        let mut col = vec![header.to_owned()];
+        for row in &self.body {
+            let value = row.get(index)?;
+            col.push(value.to_owned());
+        }
+        Some(col)
+    }
+
+    #[allow(dead_code)]
+    pub fn filter_col<T: Fn(&str) -> bool>(&self, filter: T) -> Option<Self> {
+        let mut n_table = Table::new();
+        for (i, col) in self.headers.iter().enumerate() {
+            if filter(&col) {
+                let column = self.get_col(i)?;
+                n_table.add_col(&column);
+            }
+        }
+        Some(n_table)
+    }
+
+    // the filter is only to choose which elements of the column must
+    // be returned
+    #[allow(dead_code)]
+    pub fn filter_row<T: Fn(&str) -> bool>(&self, col_name: &str, filter: T) -> Option<Self> {
+        let mut table = Table::new();
+        // the first argument of the closure is the header and the
+        // second is the value of the column
+        // to select the column of a table with
+        table.headers = self.headers.clone();
+        let mut col = 0;
+        for (i, header) in self.headers.iter().enumerate() {
+            if header == col_name {
+                col = i;
+                break;
+            }
+        }
+
+        for row in &self.body {
+            let val = row.get(col)?;
+            if filter(val) {
+                table.add_row(&row.clone());
+            }
+        }
+        Some(table)
+    }
+}
+
+use std::fmt;
+
+#[derive(Clone, Debug, PartialEq)]
+pub struct Table {
+    pub headers: Vec<String>,
+    pub body: Vec<Vec<String>>,
+}
+
+// I want to print a table well formatted:
+// Each column must adjust automatically depending on the maximum
+// length of the string inside
+// Ex:
+// |  Name   | Last Name |
+// |---------+-----------|
+// | augusto |  ornelas  |
+// here augusto is the longest string in the name column and therefore
+// the col is adjusted in response
+// in the column last name "last name" is the longest string so the
+// length of the column is adjusted and "ornelas" stays in the center
+impl fmt::Display for Table {
+    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
+        if self.headers.len() == 0 {
+            return Ok(());
+        }
+        // get the maximum length of each column
+        let cols_len = self.columns_len();
+
+        // print just one row without the newline
+        let print_row = |row: &Vec<String>, f: &mut fmt::Formatter| -> fmt::Result {
+            write!(f, "|")?;
+            for (i, col) in row.iter().enumerate() {
+                write!(f, " {:^1$} |", col, cols_len[i])?;
+            }
+            Ok(())
+        };
+
+        print_row(&self.headers, f)?;
+        write!(f, "\n")?;
+        // write the separator between the headers and the rest of the list
+        write!(f, "|")?;
+        for v in &cols_len[..(cols_len.len() - 1)] {
+            write!(f, "{:->1$}", "+", v + 3)?;
+        }
+
+        write!(f, "{:->1$}", "|", cols_len[cols_len.len() - 1] + 3)?;
+        write!(f, "\n")?;
+
+        // write the rest of the list
+        for row in self.body.iter() {
+            print_row(&row, f)?;
+            write!(f, "\n")?;
+        }
+        Ok(())
+    }
+}
+
+impl Table {
+    #[allow(dead_code)]
+    pub fn new() -> Self {
+        Self {
+            body: Vec::new(),
+            headers: Vec::new(),
+        }
+    }
+    #[allow(dead_code)]
+    fn max_col(&self, col: usize) -> usize {
+        let col_header_length = self.headers[col].len();
+        let mut max: usize = 0;
+        for row in &self.body {
+            for (i, v) in row.iter().enumerate() {
+                if i == col && v.len() > max {
+                    max = v.len()
+                }
+            }
+        }
+        if max > col_header_length {
+            max
+        } else {
+            col_header_length
+        }
+    }
+
+    #[allow(dead_code)]
+    fn columns_len(&self) -> Vec<usize> {
+        let mut cols_len = Vec::with_capacity(self.headers.len());
+        for i in 0..self.headers.len() {
+            cols_len.push(self.max_col(i));
+        }
+        cols_len
+    }
+    #[allow(dead_code)]
+    pub fn add_header(&mut self, new_header: &str) {
+        self.headers.push(new_header.to_owned());
+    }
+
+    #[allow(dead_code)]
+    pub fn add_row(&mut self, row: &[String]) {
+        assert_eq!(self.headers.len(), row.len());
+        self.body.push(row.to_vec());
+    }
+}
+
+use std::collections::BTreeSet;
+
+#[allow(dead_code)]
+pub fn flatten_tree<T: ToOwned<Owned = T>>(tree: &BTreeSet<T>) -> Vec<T> {
+    let mut flat = Vec::new();
+    for v in tree {
+        flat.push(v.to_owned());
+    }
+    flat
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn it_works() {
+        let mut tree = BTreeSet::new();
+        tree.insert(3);
+        tree.insert(0);
+        tree.insert(9);
+        tree.insert(10);
+        assert_eq!(flatten_tree(&tree), &[0, 3, 9, 10]);
+    }
+}
+
+
+use std::env;
+
+fn match_brackets(s: &str) -> bool {
+    let runes: Vec<&str> = s.split("").collect();
+    let mut opened: Vec<&str> = vec![];
+    let mut ptr: i32 = -1;
+    for c in runes.into_iter() {
+        if c == "(" || c == "[" || c == "{" {
+            opened.push(c);
+            ptr += 1;
+        } else if c == ")" {
+            if ptr < 0 || opened[ptr as usize] != "(" {
+                return false;
+            }
+            let (o, _) = opened.split_at(opened.len() - 1);
+            opened = o.to_vec();
+            ptr -= 1;
+        } else if c == "]" {
+            if ptr < 0 || opened[ptr as usize] != "[" {
+                return false;
+            }
+            let (o, _) = opened.split_at(opened.len() - 1);
+            opened = o.to_vec();
+            ptr -= 1;
+        } else if c == "}" {
+            if ptr < 0 || opened[ptr as usize] != "{" {
+                return false;
+            }
+            let (o, _) = opened.split_at(opened.len() - 1);
+            opened = o.to_vec();
+            ptr -= 1;
+        }
+    }
+    return opened.len() == 0;
+}
+
+fn main() {
+    let arg1: Vec<String> = env::args().collect();
+    if arg1.len() == 0 {
+        println!("");
+    } else {
+        for (i, v) in arg1.iter().enumerate() {
+            if i != 0 {
+                if match_brackets(v) {
+                    println!("OK");
+                } else {
+                    println!("Error");
+                }
+            }
+        }
+    }
+}
+
+pub fn brainfuck(pattern: &str) {
+    let mut ds = vec![0 as i8; 5000];
+    let mut dp: usize = 0;
+
+    let pattern_arr = pattern.chars().collect::<Vec<char>>();
+
+    let mut i: i32 = 0;
+
+    if pattern_arr.len() == 0 {
+        return;
+    }
+    while i as usize <= (&pattern_arr).len() - 1 {
+        match &pattern_arr[i as usize] {
+            '>' => dp += 1,
+            '<' => dp -= 1,
+            '+' => ds[dp] = ds[dp] + 1,
+            '-' => ds[dp] = ds[dp] - 1,
+            '.' => {
+                print!("{}", ds[dp] as u8 as char);
+            }
+            '[' => {
+                if ds[dp] == 0 {
+                    let mut nc = 1;
+                    while nc > 0 {
+                        i += 1;
+                        if pattern_arr[i as usize] == '[' {
+                            nc += 1;
+                        } else if pattern_arr[i as usize] == ']' {
+                            nc -= 1;
+                        }
+                    }
+                }
+            }
+            ']' => {
+                if ds[dp] != 0 {
+                    let mut nc = 1;
+                    while nc > 0 {
+                        i -= 1;
+                        if pattern_arr[i as usize] == ']' {
+                            nc += 1;
+                        } else if pattern_arr[i as usize] == '[' {
+                            nc -= 1;
+                        }
+                    }
+                }
+            }
+            _ => {}
+        }
+        i += 1;
+    }
+}
+
+fn main() {
+    let args: Vec<String> = std::env::args().collect();
+    brainfuck(&args[1]);
+}
+
+
+
+
+
+
